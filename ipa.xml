@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alphabet name="IPA">
+    <symbol>
+        <name>Ash</name>
+        <code>&aelig;</code>
+        <key_binding></key_binding>
+    </symbol>
+    <symbol>
+        <name>Upside down a</name>
+        <code>&#592;</code>
+        <key_binding></key_binding>
+    </symbol>
+
+</alphabet>
