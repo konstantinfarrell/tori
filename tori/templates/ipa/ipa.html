@@ -46,8 +46,8 @@
             });
 
             $("#ipa-toolbar-keyboard button").click(function(){
-                var character = $(this).html();
-                $("#ipa-input").html($("#ipa-input").html() + character);
+                var input = $("#ipa-input").val() + $(this).html()
+                $("#ipa-input").val(input);
             });
         });
     </script>
