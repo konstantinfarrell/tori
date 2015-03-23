@@ -25,7 +25,7 @@
                     </div>
                     <div id="ipa-toolbar-keyboard" class="text-center">
                         {% for character in characters %}
-                            <button class='btn btn-default btn-xs'>{{ character.code|safe }}</button>
+                            <button class="btn btn-default btn-xs" type="button">{{ character.code|safe }}</button>
                         {% endfor %}
                     </div>
                 </div>
@@ -45,8 +45,9 @@
                 $('#userIn').val('');
             });
 
-            $("btn-xs").click(function(){
-                $('#userIn').val($('#userIn').val() + $(this).text());
+            $("#ipa-toolbar-keyboard button").click(function(){
+                var character = $(this).html();
+                $("#ipa-input").html($("#ipa-input").html() + character);
             });
         });
     </script>
