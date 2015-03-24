@@ -1,27 +1,37 @@
 {% extends "base.html" %}
 
-{% block title %}IPA List{% endblock %}
+{% block title %}IPA Consonants{% endblock %}
 
 {% block content %}
 <div id="list" class="container text-center">
-    <h1>Characters</h1>
+    <h1>Consonants</h1>
     <table class="table table-hover">
         <tr>
             <td>ID</td>
+            <td>CONSONANT ID</td>
             <td>NAME</td>
             <td>CODE</td>
             <td>SYMBOL</td>
             <td>KEY</td>
             <td>ENGLISH</td>
+            <td>PLACE OA</td>
+            <td>MANNER OA</td>
+            <td>VOICED</td>
+            <td>NASAL</td>
         </tr>
-        {% for character in characters %}
+        {% for character in consonants %}
             <tr>
                 <td>{{ character.pk }}</td>
+                <td>{{ character.consonant_id }}</td>
                 <td>{{ character.name }}</td>
                 <td>{{ character.code }}</td>
                 <td>{{ character.code|safe }}</td>
                 <td>{{ character.key_binding }}</td>
                 <td>{{ character.english }}</td>
+                <td>{{ character.place_OA }}</td>
+                <td>{{ character.manner_OA }}</td>
+                <td>{{ character.voiced }}</td>
+                <td>{{ character.nasal }}</td>
             </tr>
         {% endfor %}
     </table>

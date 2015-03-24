@@ -12,5 +12,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', ipa.ipa, name='ipa'),
-    url(r'^list$', ipa._list, name='ipa-list'),
+    url(r'^list/$', ipa._list, name='ipa-list'),
+    url(r'^list/vowels$', ipa.list_vowels, name='ipa-list-vowels'),
+    url(r'^list/consonants$', ipa.list_consonants, name='ipa-list-consonants'),
 )

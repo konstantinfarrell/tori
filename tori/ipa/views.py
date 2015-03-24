@@ -9,12 +9,22 @@ def ipa(request):
 
 def _list(request):
     characters = Character.objects.all()
-    vowels = Vowel.objects.all()
-    consonants = Consonant.objects.all()
 
     return render(request, 'ipa/list.html', {
         'characters': characters,
+    })
+
+def list_vowels(request):
+    vowels = Vowel.objects.all()
+
+    return render(request, 'ipa/vowels.html', {
         'vowels': vowels,
+    })
+
+def list_consonants(request):
+    consonants = Consonant.objects.all()
+
+    return render(request, 'ipa/consonants.html', {
         'consonants': consonants,
     })
 
