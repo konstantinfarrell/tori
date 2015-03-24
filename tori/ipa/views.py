@@ -3,8 +3,16 @@ from .models import Character, Vowel, Consonant
 
 def ipa(request):
     characters = Character.objects.all()
+    consonants = Consonant.objects.all()
+    vowels = Vowel.objects.all()
+
+    uncategorized = Character.objects.all().exclude(name__in=vowels.values('name')).exclude(name__in=consonants.values('name'))
+
     return render(request, 'ipa/ipa.html', {
+        'uncategorized': uncategorized,
         'characters': characters,
+        'consonants': consonants,
+        'vowels': vowels,
     })
 
 def _list(request):
