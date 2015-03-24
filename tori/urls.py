@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', ipa.ipa, name='ipa'),
+    url(r'^list$', ipa._list, name='ipa-list'),
 )

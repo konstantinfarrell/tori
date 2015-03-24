@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}IPA List{% endblock %}
+
+{% block content %}
+<div id="list" class="text-center">
+    <h1>A Bunch of Characters</h1>
+    <div class="col-md-6">
+        <h2>Consonants</h2>
+        <table class="table table-hover">
+            <tr>
+                <td>ID</td>
+                <td>CONSONANT ID</td>
+                <td>NAME</td>
+                <td>CODE</td>
+                <td>SYMBOL</td>
+                <td>KEY</td>
+                <td>ENGLISH</td>
+                <td>PLACE OA</td>
+                <td>MANNER OA</td>
+                <td>VOICED</td>
+                <td>NASAL</td>
+            </tr>
+            {% for character in consonants %}
+                <tr>
+                    <td>{{ character.pk }}</td>
+                    <td>{{ character.consonant_id }}</td>
+                    <td>{{ character.name }}</td>
+                    <td>{{ character.code }}</td>
+                    <td>{{ character.code|safe }}</td>
+                    <td>{{ character.key_binding }}</td>
+                    <td>{{ character.english }}</td>
+                    <td>{{ character.place_OA }}</td>
+                    <td>{{ character.manner_OA }}</td>
+                    <td>{{ character.voiced }}</td>
+                    <td>{{ character.nasal }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2>Vowels</h2>
+        <table class="table table-hover">
+            <tr>
+                <td>ID</td>
+                <td>VOWEL ID</td>
+                <td>NAME</td>
+                <td>CODE</td>
+                <td>SYMBOL</td>
+                <td>KEY</td>
+                <td>ENGLISH</td>
+                <td>HEIGHT</td>
+                <td>FRONT</td>
+                <td>ROUND</td>
+                <td>TENSE</td>
+            </tr>
+            {% for character in vowels %}
+                <tr>
+                    <td>{{ character.pk }}</td>
+                    <td>{{ character.vowel_id }}</td>
+                    <td>{{ character.name }}</td>
+                    <td>{{ character.code }}</td>
+                    <td>{{ character.code|safe }}</td>
+                    <td>{{ character.key_binding }}</td>
+                    <td>{{ character.english }}</td>
+                    <td>{{ character.height }}</td>
+                    <td>{{ character.frontness }}</td>
+                    <td>{{ character.roundness }}</td>
+                    <td>{{ character.tense }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    
+    </div>
+</div>
+{% endblock %}

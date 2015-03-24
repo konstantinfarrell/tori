@@ -3,6 +3,10 @@ body {
     background-color: #F7819F;
 }
 
+#list {
+    color: #333;
+}
+
 #ipa-input {
     color: #333;
     width: 100%;
