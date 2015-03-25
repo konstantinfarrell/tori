@@ -54,8 +54,8 @@ CREATE TABLE `auth_group_permissions` (
   UNIQUE KEY `group_id` (`group_id`,`permission_id`),
   KEY `auth_group_permissions_0e939a4f` (`group_id`),
   KEY `auth_group_permissions_8373b171` (`permission_id`),
-  CONSTRAINT `auth_group_permission_group_id_1bb2bf2166460f11_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  CONSTRAINT `auth_group__permission_id_1989956df82c051a_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+  CONSTRAINT `auth_group__permission_id_2eb65ce306000c04_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permission_group_id_6b0d3f60435cd057_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,7 +83,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
   KEY `auth_permission_417f1b1c` (`content_type_id`),
-  CONSTRAINT `auth__content_type_id_286cc7c44507d5a7_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+  CONSTRAINT `auth__content_type_id_154a8f02c3f7d67f_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -118,7 +118,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +127,6 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$15000$o4fC6Bx3y7qY$iK3U1/mgA2dNKqXejcKEsPbPOOVJW8AiZ6n/5FE/L5w=','2015-03-23 16:03:15',1,'tori','','','vc2@pdx.edu',1,1,'2015-03-23 16:03:15');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,8 +145,8 @@ CREATE TABLE `auth_user_groups` (
   UNIQUE KEY `user_id` (`user_id`,`group_id`),
   KEY `auth_user_groups_e8701ad4` (`user_id`),
   KEY `auth_user_groups_0e939a4f` (`group_id`),
-  CONSTRAINT `auth_user_groups_group_id_798dcd2f2063d95b_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  CONSTRAINT `auth_user_groups_user_id_53fe6f6462efbd3a_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+  CONSTRAINT `auth_user_groups_group_id_1a49ceb8991d5ff7_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_697d296490812470_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -175,8 +174,8 @@ CREATE TABLE `auth_user_user_permissions` (
   UNIQUE KEY `user_id` (`user_id`,`permission_id`),
   KEY `auth_user_user_permissions_e8701ad4` (`user_id`),
   KEY `auth_user_user_permissions_8373b171` (`permission_id`),
-  CONSTRAINT `auth_user_user_permissio_user_id_b2d9b182e607c64_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
-  CONSTRAINT `auth_user_u_permission_id_56384b29b6ad71e6_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`)
+  CONSTRAINT `auth_user_u_permission_id_4435ac8ae5b47fd0_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissi_user_id_74371a2a6c8ba8f6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -200,12 +199,12 @@ CREATE TABLE `character` (
   `char_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `code` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `key_binding` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
   `english` tinyint(1) NOT NULL,
-  `key_binding` varchar(2) COLLATE utf8_unicode_ci,
   PRIMARY KEY (`char_id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,7 +213,7 @@ CREATE TABLE `character` (
 
 LOCK TABLES `character` WRITE;
 /*!40000 ALTER TABLE `character` DISABLE KEYS */;
-INSERT INTO `character` VALUES (1,'Ash','&aelig;',1,'a'),(2,'Open a','&#593;',1,'a'),(3,'Upside-down a','&#594;',0,'a'),(4,'Schwa','&#601;',1,'e'),(5,'Epsilon','&epsilon;',1,'e'),(6,'Backward Epsilon','&#604;',0,'e'),(7,'Rhotic Schwa','&#602;',1,'e'),(8,'Backwards e','&#600',0,'e'),(9,'Lax I','&#618;',1,'i'),(10,'Barred i','&#616;',1,'i'),(11,'O-slash','&oslash;',0,'o'),(12,'oe ligature 2','&#339;',0,'o'),(13,'Open o','&#596;',1,'o'),(14,'Lax U','&#650;',1,'u'),(15,'Barred u','&#649;',0,'u'),(16,'Open mid round e','&#606;',0,'u'),(17,'Central carot','&#652;',1,'u'),(18,'Rams horns','&#612;',0,'u'),(19,'OE Ligature','&#338;',0,'o'),(29,'Back unround u','&#623;',0,'u'),(30,'Upside down a','&#592;',0,'a'),(75,'retroflex t','&#648;',0,'t'),(76,'retroflex d','&#598;',0,'d'),(77,'retroflex n','&#627;',0,'n'),(78,'retroflex trill','&#637;',0,''),(79,'retroflex s','&#642;',0,'s'),(80,'retroflex z','&#656;',0,'z'),(81,'retroflex approx','&#635;',0,'r'),(82,'retroflex l','&#621;',0,'l'),(83,'palatal l','&#654;',0,'l'),(84,'vless lat fric','&#620;',0,'l'),(85,'v lat fric','&#622;',0,'l'),(86,'labiodental nasal','&#625;',0,'m'),(87,'palatal nasal','&#626;',0,'n'),(88,'velar nasal','&#331;',1,'n'),(89,'labiodent approx','&#651;',0,'v'),(90,'velar approx','&#624;',0,NULL),(91,'rounded schwa','&#629;',0,'o'),(92,'flap_tap','&#638;',1,'r'),(93,'esh','&#643;',1,'s'),(94,'theta','&theta;',1,'t'),(95,'ezh','&#658;',1,'j'),(96,'voiced labio-palatal approx','&#613;',0,NULL),(97,'vless uvular fric','&chi;',0,NULL),(98,'voiceless w','&#653;',1,'w'),(99,'v lab fric','&beta;',0,'b'),(100,'vless palatal fric','&ccedil;',0,'c'),(101,'eth','&eth;',1,'t'),(102,'vless lab fric','&#632;',0,'p'),(103,'v palatal stop','&#607;',0,'j'),(104,'v velar fric','&#611;',0,'g'),(105,'vless pharyngeal fric','&#295;',0,'h'),(106,'v glottal fric','&#614;',0,'h'),(107,'alveo-velar fric','&#615;',0,'h'),(108,'v palatal fric','&#669;',0,'j'),(109,'glottal stop','&#660;',1,'h'),(110,'v pharyngeal fric','&#661;',0,'h'),(111,'epiglottal fric','&#673;',0,'h'),(112,'v epiglottal fric','&#674;',0,'h'),(113,'bilabial click','&#664;',0,NULL),(114,'long vowel','&#720;',1,NULL),(115,'half long vowel','&#721;',1,NULL),(116,'implosive b','&#595;',0,'b'),(117,'implosive d','&#599;',0,'d'),(118,'implosive g','&#608;',0,'g'),(119,'implosive palatal','&#644;',0,'s'),(120,'implosive uvular','&#403;',0,'g');
+INSERT INTO `character` VALUES (1,'open back unround','&#593;','a',1),(2,'open-mid reduced','&#592;','a',0),(3,'open back rounded','&#594;','a',0),(4,'open front unround','&#230;','a',1),(5,'vd bilabial implosive','&#595;','b',0),(6,'vd bilabial trill','&#665;','b',0),(7,'vd bilabial fricative','&#946;','b',0),(8,'open-mid back round','&#596;',NULL,1),(9,'vl alveopalatal fricative','&#597;','c',0),(10,'vl palatal fricative','&#231;','c',0),(11,'vd alveolar implosive','&#599;','d',0),(12,'vd retroflex stop','&#598;','d',0),(13,'vd dental fricative','&#240;','',1),(14,'vd alveolar affricate','&#676;',NULL,1),(15,'schwa','&#601;','e',1),(16,'close-mid reduced','&#600;','e',0),(17,'rhotacized schwa','&#602;','e',1),(18,'open-mid front unround','&#603;','e',1),(19,'open-mid central','&#604;','e',0),(20,'rhotacized open-mid central','&#605;','e',1),(31,'open-mid central round','&#606;','e',0),(32,'vd palatal stop','&#607;','f',0),(33,'vd palatal implosive','&#644;','f',0),(34,'vd velar stop','&#609;','g',1),(35,'vd velar implosive','&#608;','g',0),(36,'vd uvular stop','&#610;','g',0),(37,'vd uvular implosive','&#667;','g',0),(38,'vd glottal fricative','&#614;','h',0),(39,'vl alveo-uvular fricative','&#615;','h',0),(40,'vl pharyngeal fricative','&#295;','h',0),(41,'labial-palatal approximant','&#613;','h',0),(42,'vl epiglottal fricative','&#668;','h',0),(43,'close central unround','&#616;','i',1),(44,'close front unround lax','&#618;','i',1),(45,'vd palatal fricative','&#669;','j',0),(46,'vd retroflex lateral','&#621;','l',0),(47,'vl alveolar lateral fricative','&#620;','l',0),(48,'velarized vd alveolar lateral','&#619;','l',1),(49,'vd alveolar lateral fricative','&#622;','l',0),(50,'vd velar lateral','&#671;','l',0),(51,'labiodental nasal','&#625;','m',0),(52,'close back unround','&#623;','m',0),(53,'velar approximant','&#624;','m',0),(54,'velar nasal','&#331;','n',1),(55,'retroflex nasal','&#627;','n',0),(56,'palatal nasal','&#626;','n',0),(57,'uvular nasal','&#628;','n',0),(58,'front close-mid round','&#248;','o',0),(59,'round schwa','&#629;','o',0),(60,'vl bilabial fricative','&#632;','o',0),(61,'vl dental fricative','&#952;',NULL,1),(62,'front open-mid round','&#339;','o',0),(63,'front open round','&#630;','o',0),(64,'bilabial click','&#664;','o',0),(65,'vd alveolar approximant','&#633;','r',1),(66,'vd alveolar later flap','&#634;','r',0),(67,'vd alveolar tap','&#638;','',1),(68,'vd retroflex approximant','&#635','r',0),(69,'vd uvular trill','&#640;','r',0),(70,'vd uvular fricative','&#641;','r',0),(71,'vd retroflex flap','&#637;','r',0),(72,'vl retroflex fricative','&#642;','s',0),(73,'vl postalveolar fricative','&#643;','s',1),(74,'vl retroflex stop','&#648;','t',0),(75,'vl postalveolar affricate','&#679;','',1),(76,'close central round','&#649;','u',0),(77,'close back round lax','&#650;','u',1),(78,'vd labiodental approximant','&#651;','v',0),(79,'vd labiodental flap','&#11377;','v',0),(80,'open-mid back unround','&#652;',NULL,1),(81,'vd velar fricative','&#611;','v',0),(82,'close-mid back unround','&#612;',NULL,0),(83,'vl labio-velar fricative','&#653;','w',1),(84,'vl uvular fricative','&#967;','x',0),(85,'vd palatal lateral','&#654;','y',0),(86,'close front round lax','&#655;','y',0),(87,'vd alveo-palatal fricative','&#657;','z',0),(88,'vd retroflex fricative','&#656;','z',0),(89,'vd postalveolar fricative','&#658;','',1),(90,'vl glottal stop','&#660;',NULL,1),(91,'vd epiglottal stop','&#673;',NULL,0),(92,'vd pharyngeal fricative','&#661;',NULL,0),(93,'vd epiglottal fricative','&#674;',NULL,0),(94,'dental click','&#448;',NULL,0),(95,'alveolar lateral click','&#449;',NULL,0),(96,'alveolar click','&#450;',NULL,0),(97,'retroflex click','&#451;',NULL,0),(98,'stress mark - primary','&#712;',NULL,1),(99,'stress mark - secondary','&#716;',NULL,1),(100,'length mark','&#720;',NULL,1),(101,'half-length mark','&#721;',NULL,1),(102,'aspiration','&#688;',NULL,1),(103,'palatalization','&#690;',NULL,1),(104,'labialization','&#695;',NULL,1),(105,'velarization','&#736;',NULL,1),(106,'pharyngealization','&#740;',NULL,1),(107,'rhotacized','&#734;',NULL,1),(108,'voiceless','&#805;',NULL,1),(109,'voiceless_above','&#778;',NULL,1),(110,'breathy voice','&#804;',NULL,1),(111,'dentalized','&#810;',NULL,1),(112,'voiced','&#812;',NULL,1),(113,'creaky voice','&#816;',NULL,1),(114,'more rounded','&#825;',NULL,1),(115,'less rounded','&#796;',NULL,1),(116,'nasalized','&#771;',NULL,1),(117,'syllabic','&#809;',NULL,1),(118,'non-syllabic','&#815;',NULL,1),(119,'tie bar below','&#860;',NULL,1),(120,'tie bar above','&#865;',NULL,1),(121,'becomes arrow','&#8594;',NULL,1),(122,'downstep','&#8595;',NULL,1),(123,'upstep','&#8593;',NULL,1),(124,'global rise','&#8599;',NULL,1),(125,'global fall','&#8600;',NULL,1);
 /*!40000 ALTER TABLE `character` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,8 +233,8 @@ CREATE TABLE `consonant` (
   `nasal` tinyint(1) NOT NULL,
   PRIMARY KEY (`consonant_id`),
   UNIQUE KEY `character_ptr_id` (`character_ptr_id`),
-  CONSTRAINT `consonant_character_ptr_id_7a9500fe8cc996cb_fk_character_char_id` FOREIGN KEY (`character_ptr_id`) REFERENCES `character` (`char_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `character_ptr_id_refs_char_id_f3aca99f` FOREIGN KEY (`character_ptr_id`) REFERENCES `character` (`char_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,6 +243,7 @@ CREATE TABLE `consonant` (
 
 LOCK TABLES `consonant` WRITE;
 /*!40000 ALTER TABLE `consonant` DISABLE KEYS */;
+INSERT INTO `consonant` VALUES (5,1,'bilabial','implosive',1,0),(6,2,'bilabial','trill',1,0),(7,3,'bilabial','fricative',1,0),(9,4,'alveo-palatal','fricative',0,0),(10,5,'palatal','fricative',0,0),(11,6,'alveolar','implosive',1,0),(12,7,'retroflex','stop',1,0),(13,8,'dental','fricative',1,0),(14,9,'alveolar','affricate',1,0),(32,10,'palatal','stop',1,0),(33,11,'palatal','implosive',1,0),(34,12,'velar','stop',1,0),(35,13,'velar','implosive',1,0),(36,14,'uvular','stop',1,0),(37,15,'uvular','implosive',1,0),(38,16,'glottal','fricative',1,0),(39,17,'alveo-uvular','fricative',0,0),(40,18,'pharyngeal','fricative',0,0),(41,19,'labial-palatal','approximant',1,0),(42,20,'epiglottal','fricative',0,0),(45,21,'palatal','fricative',1,0),(46,22,'retroflex','approximant',1,0),(47,23,'alveolar','fricative',0,0),(48,24,'alveolar','approximant',1,0),(49,25,'alveolar','fricative',1,0),(50,26,'velar','approximant',1,0),(51,27,'labiodental','stop',1,1),(53,28,'velar','approximant',1,0),(54,29,'velar','stop',1,1),(55,30,'retroflex','stop',1,1),(56,31,'palatal','stop',1,1),(57,32,'uvular','stop',1,1),(60,33,'bilabial','fricative',0,0),(61,34,'dental','fricative',0,0),(64,35,'bilabial','click',0,0),(65,36,'alveolar','approximant',1,0),(66,37,'alveolar','flap',1,0),(67,38,'alveolar','tap',1,0),(68,39,'retroflex','approximant',1,0),(69,40,'uvular','trill',1,0),(70,41,'uvular','fricative',1,0),(71,42,'retroflex','flap',1,0),(72,43,'retroflex','fricative',0,0),(73,44,'postalbeolar','fricative',0,0),(74,45,'retroflex','stop',0,0),(75,46,'postalveolar','affricate',0,0),(78,47,'labiodental','approximant',1,0),(79,48,'labiodental','flap',1,0),(81,49,'velar','fricative',1,0),(83,50,'labio-velar','fricative',0,0),(87,51,'alveo-palatal','fricative',1,0),(88,52,'retroflex','fricative',1,0),(89,53,'postalveolar','fricative',1,0),(90,54,'glottal','stop',0,0),(91,55,'epiglottal','stop',1,0),(92,56,'pharyngeal','fricative',1,0),(93,57,'epiglottal','fricative',1,0),(94,58,'dental','click',0,0),(95,59,'alveolar','click',0,0),(96,60,'alveolar','click',0,0),(97,61,'retroflex','click',0,0),(84,71,'uvular','fricative',0,0),(85,72,'palatal','approximant',1,0);
 /*!40000 ALTER TABLE `consonant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,8 +266,8 @@ CREATE TABLE `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_417f1b1c` (`content_type_id`),
   KEY `django_admin_log_e8701ad4` (`user_id`),
-  CONSTRAINT `django_admin_log_user_id_1e76387b0b92115b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
-  CONSTRAINT `djang_content_type_id_5701ea0e903ba1f4_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+  CONSTRAINT `django_admin_log_user_id_e4a347f3c85911d_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `djang_content_type_id_3704d6b40b97563a_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -293,7 +293,7 @@ CREATE TABLE `django_content_type` (
   `app_label` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `model` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `django_content_type_app_label_3cf52cb67049f0d0_uniq` (`app_label`,`model`)
+  UNIQUE KEY `django_content_type_app_label_19439a8606fa38dc_uniq` (`app_label`,`model`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -320,7 +320,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `applied` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +329,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2015-03-23 16:02:21'),(2,'auth','0001_initial','2015-03-23 16:02:23'),(3,'admin','0001_initial','2015-03-23 16:02:24'),(4,'ipa','0001_initial','2015-03-23 16:02:24'),(5,'sessions','0001_initial','2015-03-23 16:02:24'),(6,'ipa','0002_auto_20150324_0353','2015-03-24 03:54:04');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2015-03-25 04:32:56'),(2,'auth','0001_initial','2015-03-25 04:32:58'),(3,'admin','0001_initial','2015-03-25 04:32:59'),(4,'sessions','0001_initial','2015-03-25 04:33:00');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,8 +374,8 @@ CREATE TABLE `vowel` (
   `tense` tinyint(1) NOT NULL,
   PRIMARY KEY (`vowel_id`),
   UNIQUE KEY `character_ptr_id` (`character_ptr_id`),
-  CONSTRAINT `vowel_character_ptr_id_70776add226674fb_fk_character_char_id` FOREIGN KEY (`character_ptr_id`) REFERENCES `character` (`char_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `character_ptr_id_refs_char_id_f7113ff9` FOREIGN KEY (`character_ptr_id`) REFERENCES `character` (`char_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -384,7 +384,7 @@ CREATE TABLE `vowel` (
 
 LOCK TABLES `vowel` WRITE;
 /*!40000 ALTER TABLE `vowel` DISABLE KEYS */;
-INSERT INTO `vowel` VALUES (1,1,'open','front',0,1),(2,20,'open','back',0,1),(3,21,'open','back',1,0),(4,22,'mid','central',0,0),(5,23,'open-mid','front',0,1),(6,24,'open-mid','central',0,0),(7,25,'mid','central',0,0),(8,26,'close-mid','central',0,0),(9,27,'close','front',0,1),(10,28,'close','central',0,0),(11,29,'close-mid','front',1,0),(12,30,'open-mid','front',1,0),(13,31,'open-mid','back',1,1),(14,32,'close','back',0,1),(15,33,'close','central',1,0),(16,34,'open-mid','central',1,0),(18,35,'close-mid','back',0,0),(19,36,'open','front',1,0),(29,37,'close','back',0,0),(17,38,'mid','central',0,0),(30,39,'open-mid','central',0,0);
+INSERT INTO `vowel` VALUES (1,1,'open','back',0,0),(2,2,'open-mid','central',0,0),(3,3,'open','back',1,0),(4,4,'open','front',0,0),(15,5,'mid','central',0,0),(16,6,'close-mid','central',0,0),(17,7,'mid','central',0,0),(18,8,'open-mid','front',0,0),(19,9,'open-mid','central',0,0),(20,10,'open-mid','cenral',0,0),(31,11,'open-mid','central',1,0),(43,12,'close','central',0,0),(44,13,'close','front',0,0),(52,14,'close','back',0,0),(58,15,'close-mid','front',1,0),(59,16,'mid','central',1,0),(62,17,'open-mid','front',1,0),(63,18,'open','front',1,0),(76,19,'close','central',1,0),(77,20,'close','back',1,0),(80,21,'open-mid','back',0,0),(82,22,'close-mid','back',0,0),(86,23,'close','front',1,0),(8,24,'open-mid','back',1,0);
 /*!40000 ALTER TABLE `vowel` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -397,4 +397,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-24  0:17:23
+-- Dump completed on 2015-03-24 23:40:43
