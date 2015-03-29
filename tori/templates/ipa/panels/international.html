@@ -1,0 +1,19 @@
+<div class="col-md-6">
+    <h1>Vowels</h1>
+    {% for letter in international_vowel %}
+        <button class="btn btn-default" type="button">{{ letter.code|safe }}</button>
+    {% endfor %}
+</div>
+<div class="col-md-6">
+    <h1>Consonants</h1>
+    {% for letter in international_consonant %}
+        <button class="btn btn-default" type="button">{{ letter.code|safe }}</button>
+    {% endfor %}
+</div>
+<br />
+<hr />
+<div>
+    {% for letter in uncategorized_international %}
+        <button class="btn btn-default" type="button">{{ letter.code|safe }}</button>
+    {% endfor %}
+</div>
