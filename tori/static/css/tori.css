@@ -25,6 +25,11 @@ body {
 
 }
 
+.ipa-keyboard-panel {
+    width: 80%;
+    margin: 0 auto;
+}
+
 #ipa-toolbar {
     background-color: #ccc;
     border-radius: 2px;
@@ -33,7 +38,11 @@ body {
 }
 
 #ipa-toolbar-keyboard {
-    padding: 5px;
+    padding: 10px;
+}
+
+#ipa-toolbar-nav {
+    padding: 5px 0px;
 }
 
 .push {
