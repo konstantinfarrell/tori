@@ -2,17 +2,32 @@ from django.shortcuts import render
 from .models import Character, Vowel, Consonant
 
 def ipa(request):
-    characters = Character.objects.all()
-    consonants = Consonant.objects.all()
-    vowels = Vowel.objects.all()
+    # English stuff
+    english = Character.objects.filter(english=True)
+    english_vowel = english.filter(pk__in=Vowel.objects.values('char_id'))
+    english_consonant = english.filter(pk__in=Consonant.objects.values('char_id'))
+    # International stuff
+    international = Character.objects.filter(english=False)
+    international_vowel = international.filter(pk__in=Vowel.objects.values('char_id'))
+    international_consonant = international.filter(pk__in=Consonant.objects.values('char_id'))
 
-    uncategorized = Character.objects.all().exclude(name__in=vowels.values('name')).exclude(name__in=consonants.values('name'))
+    uncategorized_english = english.\
+            exclude(pk__in=english_vowel.values('char_id')).\
+            exclude(pk__in=english_consonant.values('char_id'))
+
+    uncategorized_international = international.\
+            exclude(pk__in=international_vowel.values('char_id')).\
+            exclude(pk__in=international_consonant.values('char_id'))
 
     return render(request, 'ipa/ipa.html', {
-        'uncategorized': uncategorized,
-        'characters': characters,
-        'consonants': consonants,
-        'vowels': vowels,
+        'uncategorized_english': uncategorized_english,
+        'english': english,
+        'english_vowel': english_vowel,
+        'english_consonant': english_consonant,
+        'uncategorized_international': uncategorized_english,
+        'international': international,
+        'international_vowel': international_vowel,
+        'international_consonant': international_consonant,
     })
 
 def _list(request):
