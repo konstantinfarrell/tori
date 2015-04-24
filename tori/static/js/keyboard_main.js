@@ -1,4 +1,35 @@
-$(document).ready(function(){
+$(document).ready(function(e){
+
+    // Instantiate the mode
+    var ipa_mode = false;
+    var last_key_pressed = null;
+    var counter = 0;
+
+    // Functions to be performed on keydown
+    $(document).keydown(function(e){
+        if(e.shiftKey){
+            ipa_mode = true;
+        }
+    });
+
+    // Functions to be performed on keyup
+    $(document).keyup(function(e){
+        if(e.which == 16){
+            ipa_mode = false;
+        }
+    });
+
+    // Functions to be performed on keypress
+    $(document).keypress(function(e){
+        // IPA mode is on. Cycle through them choices
+        if(ipa_mode === true){
+            // Here would be the place to construct some sort of ajax query.
+            if(e.which != last_key_pressed){
+                counter = 0;
+            }
+        }
+    });
+
 
     // Make all the buttons work
     $("#ipa-toolbar-keyboard button").click(function(){
@@ -44,6 +75,7 @@ $(document).ready(function(){
         $(button).toggleClass('active');
         $.cookie("whichButton", $(button).attr('id'));
     }
+
 
     // To be run when the page loads
     var button = document.getElementById($.cookie("whichButton"));
