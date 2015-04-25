@@ -19,7 +19,11 @@ def ipa(request):
             exclude(pk__in=international_vowel.values('char_id')).\
             exclude(pk__in=international_consonant.values('char_id'))
 
+    # Generate a list of characters & keybindings
+    english_keybindings = english.values('key_binding','code').exclude(key_binding=None)
+
     return render(request, 'ipa/ipa.html', {
+        'english_keybindings': english_keybindings,
         'uncategorized_english': uncategorized_english,
         'english': english,
         'english_vowel': english_vowel,

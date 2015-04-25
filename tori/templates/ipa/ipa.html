@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block title %}IPA Keyboard{% endblock %}
+{% block head %}
+<script>
+    var english_keybindings = {{ english_keybindings|safe }};
+</script>
+{% endblock %}
 {% block content %}
     <div class="push">
         <div class="container text-center">

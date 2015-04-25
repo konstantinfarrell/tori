@@ -14,22 +14,42 @@ $(document).ready(function(e){
 
     // Functions to be performed on keyup
     $(document).keyup(function(e){
+        
         if(e.which == 16){
             ipa_mode = false;
         }
     });
 
+    //#TODO: just a few more to go
     // Functions to be performed on keypress
     $(document).keypress(function(e){
         // IPA mode is on. Cycle through them choices
         if(ipa_mode === true){
-            // Here would be the place to construct some sort of ajax query.
-            if(e.which != last_key_pressed){
+            var current_key = String.fromCharCode(e.which);
+            var bound_to_current = [];
+            var bindings = JSON.stringify(english_keybindings);
+            $.each($.parseJSON(bindings), function(idx, obj){
+                if(obj.key_binding == current_key.toLowerCase()){
+                    bound_to_current.push(obj.code);
+                }
+            });
+            if(current_key != last_key_pressed){
                 counter = 0;
             }
+            e.which = htmlDecode(bound_to_current[counter % bound_to_current.length]);
+            var input = $("#ipa-input").val() + htmlDecode(bound_to_current[counter % bound_to_current.length]);
+            $("#ipa-input").val(input);
+            last_key_pressed = current_key;
+            counter++;
+            alert($("#ipa-input").val());
         }
     });
 
+    function htmlDecode(input){
+        var e = document.createElement('div');
+        e.innerHTML = input;
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
 
     // Make all the buttons work
     $("#ipa-toolbar-keyboard button").click(function(){
