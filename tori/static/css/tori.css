@@ -1,10 +1,20 @@
-body {
-    color: #ddd;
-    background-color: #F7819F;
+* {
+    margin: 0;
 }
 
-#list {
-    color: #333;
+body, html {
+    color: #ddd;
+    background-color: #F7819F;
+    height: 100%;
+}
+
+#footer {
+    height: 3em;
+    width: 100%;
+    color: #666;
+}
+
+#footer-push {
 }
 
 #ipa-input {
@@ -17,7 +27,12 @@ body {
     margin: 0px 0px 5px;
 }
 
+#ipa-indicator {
+    margin: 0 0 5px;
+}
+
 .ipa-keyboard {
+    color: #888;
     background-color: #ddd;
     border-radius: 2px;
     box-shadow: 0px 0px 2px 1px #666;
@@ -45,10 +60,21 @@ body {
     padding: 5px 0px;
 }
 
+#list {
+    color: #333;
+}
+
 .push {
     height: 100px;
 }
 
 .pull-right {
     margin: 0px 2.5px;
+}
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -3em;
 }
