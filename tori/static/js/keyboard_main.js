@@ -15,7 +15,7 @@ $(document).ready(function(e){
     $(document).keydown(function(e){
         if(e.shiftKey){
             ipa_mode = true;
-            $("#ipa-indicator").css("color", "yellow");
+            $("#ipa-indicator").css("color", "pink");
             $("#ipa-indicator").text(" on");
         }
     });
