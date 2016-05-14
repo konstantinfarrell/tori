@@ -10,7 +10,6 @@ clean:
 	find -iname "__pycache__" -delete
 
 migrate:
-	./manage.py syncdb
 	./manage.py migrate
 
 test:
